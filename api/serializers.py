@@ -4,4 +4,4 @@ from .models import Form
 class FormSubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Form
-        fields = ['name', 'message']
+        fields = ['data']
