@@ -209,56 +209,6 @@ class PasswordResetConfirmView(generics.GenericAPIView):
 
 
 
-# class CreateUserProfileView(generics.CreateAPIView):
-#     queryset = UserProfile.objects.all()
-#     serializer_class = UserProfileSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     @transaction.atomic
-#     def create(self, request, *args, **kwargs):
-#         user = request.user
-
-#         # Check if the user already has a profile
-#         if UserProfile.objects.filter(user=user).exists():
-#             return Response(
-#                 {'detail': 'User profile already exists.'},
-#                 status=status.HTTP_400_BAD_REQUEST
-#             )
-
-#         # Validate and save the new profile
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save(user=user)
-
-#         # Return the created profile data with a status message
-#         return Response(
-#             {
-#                 'detail': 'User profile created successfully.',
-#                 'data': serializer.data
-#             },
-#             status=status.HTTP_201_CREATED
-#         )
-
-# class UpdateUserProfileView(generics.UpdateAPIView):
-#     queryset = UserProfile.objects.all()
-#     serializer_class = UserProfileSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def get_object(self):
-#         return UserProfile.objects.get(user=self.request.user)
-
-#     def update(self, request, *args, **kwargs):
-#         partial = kwargs.pop('partial', False)
-#         instance = self.get_object()
-#         serializer = self.get_serializer(instance, data=request.data, partial=partial)
-#         serializer.is_valid(raise_exception=True)
-#         self.perform_update(serializer)
-
-#         return Response(
-#             {'detail': 'User profile updated successfully.'},
-#             status=status.HTTP_200_OK
-#         )
-
 class UserDetailsView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserProfileSerializer
