@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Form, FormSubmission
 from rest_framework.renderers import JSONRenderer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 
@@ -19,6 +19,7 @@ class CreateFormView(APIView):
     
 
 class FormSubmissionView(APIView):
+    permission_classes = [AllowAny]
     renderer_classes = [JSONRenderer]
 
     def post(self, request, id):
